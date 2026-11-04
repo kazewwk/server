@@ -4,35 +4,34 @@
 
 ## DSH Go LocalFix
 
-非官方个人测试版。沿用 LocalFix 包名和签名，可覆盖安装并保留 SSH 配置，不要先卸载。
+非官方个人测试版。沿用现有 LocalFix 包名和签名，覆盖安装保留 SSH 配置，不要先卸载。
 
 | 版本 | 平台 | 下载 |
 |---|---|---|
-| 1.0.10-localfix.2（当前测试版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r2-20261104/dsh-go-1.0.10-localfix.2-arm64.apk) |
+| 1.0.10-localfix.3（当前测试版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r3-20261104/dsh-go-1.0.10-localfix.3-arm64.apk) |
+| 1.0.10-localfix.2（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r2-20261104/dsh-go-1.0.10-localfix.2-arm64.apk) |
 | 1.0.10-localfix.1（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r1-20261104/dsh-go-1.0.10-localfix.1-arm64.apk) |
 | 1.0.9-localfix.3（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-r3-20261104/dsh-go-1.0.9-localfix.3-arm64.apk) |
 | 1.0.9-localfix.2（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-r2-20261104/dsh-go-1.0.9-localfix.2-arm64.apk) |
 | 1.0.9-localfix.1（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-20261103/dsh-go-1.0.9-localfix.1-arm64.apk) |
 
-本次修复已复现的对话通道恢复缺口：SSH 在线、但对话 mux 关闭或拒绝旧 cookie 后，重新登录并发布新客户端；不再复用已关闭通道。恢复过程中发生的 cookie 拒绝会在当前重连释放后继续处理。保活、返回前台和手动重试也会检查该状态。
+本次针对新诊断中的本地 `127.0.0.1 Broken pipe`：复现了接收端断开后，转发写失败从未观察的 `Socket.done` 漏到全局平台异常处理器的路径。现在正确收尾该连接，保护双向转发写入，并继续清理延迟打开的通道。
 
-补齐诊断记录：已捕获的同步异常及原始堆栈通过现有脱敏器进入内存错误日志，记录意外的 follow 结束；正常连接观察同时保留 mux 状态、错误类型与 HTTP 状态码。导出诊断不会额外创建连接。若仍复现，请在失败后直接导出，强行停止会清空内存错误记录。
+SSH 优先协商现有 ChaCha20-Poly1305，保留原 AES 回退。同线路传输 4 MiB 合成数据，桌面 AES-256-GCM 7385 ms，ChaCha20-Poly1305 567 ms。指定对话通过真实服务的 App 连接管理/会话控制器只读测试，达到同步状态从约 4517 ms 降到 1847 ms，前后台恢复也通过。此为桌面测量，不代表所有手机、网络都相同。
 
-验证：2234 项相关 App 套件通过（8 跳过），最后 15 项生命周期/EOF/诊断用例通过（与前者有重叠，不相加），静态检查通过。关闭 mux 的用例先复现无法恢复，再验证修复；cookie 拒绝重连时序与日志脱敏通过。在真实 work 服务上主动关闭本测试客户端后约 1 秒重连，随后重新取得会话快照；普通和约 1 Mbps 限速链路也做了只读检查。
+439 项相关测试通过（8 跳过），静态检查通过。包括先失败后修复的重置接收端用例、半关闭与最终回复、延迟通道、指纹拒绝、传输完整性，以及强制 AES-GCM 的兼容回退。
 
-限制：手机上传的 localfix.1 日志确认 SSH connected、刷新率 max、无新 ANR，但未记录原始同步异常。手机最初断开的触发原因仍未证实；此版修复已复现的恢复缺口并补齐记录，不保证覆盖其他原因，新 APK 尚未真机验证。
+保留官方 [1.0.10](https://github.com/ccch1mneyyy/dsh-Go/releases/tag/v1.0.10) 与前版修复：SSH 后台加解密、JSON/快照后台处理、会话关闭与 cookie 失效恢复、同步异常/堆栈诊断、默认前台最高 120 Hz 请求（实际 FPS 受系统和负载影响）。
 
-保留 [官方 1.0.10](https://github.com/ccch1mneyyy/dsh-Go/releases/tag/v1.0.10)（`b4f2d240`）及前版修复：动效/模糊优化、远程上传、默认模型、图片/待办与 compact 更新；SSH 后台加解密、JSON/快照后台处理；后台对话恢复与默认前台最高 120 Hz 请求，实际帧率受系统与渲染负载影响。
+新 APK 尚未真机验证；修复了已复现的写失败路径并减少实测解密瓶颈，手机最初关闭接收端的全部触发因素尚未完全证实。若仍失败，请在发生后直接导出诊断，先不要强行停止 App，以保留内存错误记录。
 
-运行时仍与已校验的官方 1.0.10 APK 一致。手机本地 Linux 的官方迁移只保留 `/root`；远程电脑不随 APK 更新。
+- [发布页](https://github.com/kazewwk/server/releases/tag/dsh-go-localfix-v1.0.10-r3-20261104)
+- [完整对应源码](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r3-20261104/dsh-go-1.0.10-localfix.3-source.tar.gz)
+- [源码补丁](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r3-20261104/dsh-go-1.0.10-localfix.3-source.patch)
+- [构建说明](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r3-20261104/LOCALFIX-NOTES.txt)
+- [验证记录](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r3-20261104/verification.json)
+- [SHA256 校验和](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r3-20261104/SHA256SUMS)
 
-- [发布页](https://github.com/kazewwk/server/releases/tag/dsh-go-localfix-v1.0.10-r2-20261104)
-- [完整对应源码](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r2-20261104/dsh-go-1.0.10-localfix.2-source.tar.gz)
-- [源码补丁](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r2-20261104/dsh-go-1.0.10-localfix.2-source.patch)
-- [构建说明](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r2-20261104/LOCALFIX-NOTES.txt)
-- [验证记录](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r2-20261104/verification.json)
-- [SHA256 校验和](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r2-20261104/SHA256SUMS)
+APK SHA256：`91491fdc748ef620c5c8f6fe7f3fba1a7079500f5bcafb6c4079472797dc4cb0`
 
-APK SHA256：`cf492fa48819124afd4371fbe4504f0837c98486dc8ff04d4b17271c568239c6`
-
-源码沿用上游 AGPL-3.0；r1 背景解析参考 `mcl0z/dsh-Go@5376c644`。许可、署名与素材说明见 LICENSE、ASSETS.md 和 LOCALFIX-NOTES.txt。用户诊断包、会话内容、私钥与签名密钥不在附件中。
+源码沿用 AGPL-3.0；r1 背景解析参考 `mcl0z/dsh-Go@5376c644`。许可、署名与素材说明见 LICENSE、ASSETS.md 和 LOCALFIX-NOTES.txt。用户诊断、会话内容及标识、QQ 配置/人格、真实主机测试脚本和签名密钥不在交付源码或 APK 内。运行时与已校验官方 1.0.10 相同；手机本地 Linux 的官方迁移只保留 `/root`，远程电脑不会随 APK 更新。
