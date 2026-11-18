@@ -8,7 +8,8 @@
 
 | 版本 | 平台 | 下载 |
 |---|---|---|
-| 1.1.0-localfix.2（当前测试版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.1.0-r2-20261119/dsh-go-1.1.0-localfix.2-arm64.apk) |
+| 1.2.0-localfix.1（当前测试版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.2.0-r1-20261119/dsh-go-1.2.0-localfix.1-arm64.apk) |
+| 1.1.0-localfix.2（旧版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.1.0-r2-20261119/dsh-go-1.1.0-localfix.2-arm64.apk) |
 | 1.1.0-localfix.1（旧版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.1.0-r1-20261117/dsh-go-1.1.0-localfix.1-arm64.apk) |
 | 1.0.16-localfix.1（旧版） | Android arm64，约 215 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.16-r1-20261115/dsh-go-1.0.16-localfix.1-arm64.apk) |
 | 1.0.15-localfix.1（旧版） | Android arm64，约 211 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.15-r1-20261113/dsh-go-1.0.15-localfix.1-arm64.apk) |
@@ -18,6 +19,8 @@
 | 1.0.9-localfix.3（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-r3-20261104/dsh-go-1.0.9-localfix.3-arm64.apk) |
 | 1.0.9-localfix.2（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-r2-20261104/dsh-go-1.0.9-localfix.2-arm64.apk) |
 | 1.0.9-localfix.1（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-20261103/dsh-go-1.0.9-localfix.1-arm64.apk) |
+
+**1.2.0-localfix.1** 合入官方 1.2.0。常用 Shell 命令的开关支持 Shizuku 和自连 ADB，两种通道分别保存，开启时需以 shell 身份连接。保留 SSH 后台加解密、同步修复和 Android 最高 120 Hz 设置。[发布页与源码](https://github.com/kazewwk/server/releases/tag/dsh-go-localfix-v1.2.0-r1-20261119)
 
 **1.1.0-localfix.2** 新增「本机 ADB 常用命令免确认」。连接自连 ADB 后可开启，屏幕参数、电量、亮度查询和返回、主页、音量键可自动执行。其他 Shell 命令及 Shizuku 仍逐条确认。[发布页与源码](https://github.com/kazewwk/server/releases/tag/dsh-go-localfix-v1.1.0-r2-20261119)
 
