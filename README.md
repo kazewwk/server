@@ -8,7 +8,8 @@
 
 | 版本 | 平台 | 下载 |
 |---|---|---|
-| 1.1.0-localfix.1（当前测试版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.1.0-r1-20261117/dsh-go-1.1.0-localfix.1-arm64.apk) |
+| 1.1.0-localfix.2（当前测试版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.1.0-r2-20261119/dsh-go-1.1.0-localfix.2-arm64.apk) |
+| 1.1.0-localfix.1（旧版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.1.0-r1-20261117/dsh-go-1.1.0-localfix.1-arm64.apk) |
 | 1.0.16-localfix.1（旧版） | Android arm64，约 215 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.16-r1-20261115/dsh-go-1.0.16-localfix.1-arm64.apk) |
 | 1.0.15-localfix.1（旧版） | Android arm64，约 211 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.15-r1-20261113/dsh-go-1.0.15-localfix.1-arm64.apk) |
 | 1.0.10-localfix.3（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.10-r3-20261104/dsh-go-1.0.10-localfix.3-arm64.apk) |
@@ -18,7 +19,9 @@
 | 1.0.9-localfix.2（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-r2-20261104/dsh-go-1.0.9-localfix.2-arm64.apk) |
 | 1.0.9-localfix.1（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-20261103/dsh-go-1.0.9-localfix.1-arm64.apk) |
 
-本次基于官方 [1.1.0（2026-11-15）](https://github.com/ccch1mneyyy/dsh-Go/releases/tag/v1.1.0)。合入语音朗读、语音输入和语音通话，酒馆玩法包/做卡工具及长对话优化，用量统计 v3 和新界面效果；包含远程重连、伙伴兼容、语音崩溃等修复。
+**1.1.0-localfix.2** 新增「本机 ADB 常用命令免确认」。连接自连 ADB 后可开启，屏幕参数、电量、亮度查询和返回、主页、音量键可自动执行。其他 Shell 命令及 Shizuku 仍逐条确认。[发布页与源码](https://github.com/kazewwk/server/releases/tag/dsh-go-localfix-v1.1.0-r2-20261119)
+
+上一版 1.1.0-localfix.1 基于官方 [1.1.0（2026-11-15）](https://github.com/ccch1mneyyy/dsh-Go/releases/tag/v1.1.0)。合入语音朗读、语音输入和语音通话，酒馆玩法包/做卡工具及长对话优化，用量统计 v3 和新界面效果；包含远程重连、伙伴兼容、语音崩溃等修复。
 
 保留 SSH 后台加解密、ChaCha20-Poly1305 优先及 AES 回退、认证后压缩、大 JSON/快照后台准备、转发写失败收尾、前后台同步恢复和 mux 重新登录。前台最高 **120 Hz** 请求继续保留，后续手动设置仍有效，实际帧率受系统和负载影响。接入新版持久化诊断，保留受限 ANR 堆栈。
 
