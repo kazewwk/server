@@ -8,7 +8,8 @@
 
 | 版本 | 平台 | 下载 |
 |---|---|---|
-| 1.3.0-localfix.1（当前测试版） | Android arm64，约 235 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.3.0-r1-20261123/dsh-go-1.3.0-localfix.1-arm64.apk) · [校验 ZIP](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.3.0-r1-20261123/dsh-go-1.3.0-localfix.1-arm64-verified.zip) |
+| 1.4.0-localfix.1（当前测试版） | Android arm64，约 227 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.4.0-r1-20261127/dsh-go-1.4.0-localfix.1-arm64.apk) · [校验 ZIP](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.4.0-r1-20261127/dsh-go-1.4.0-localfix.1-arm64-verified.zip) |
+| 1.3.0-localfix.1 | Android arm64，约 235 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.3.0-r1-20261123/dsh-go-1.3.0-localfix.1-arm64.apk) · [校验 ZIP](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.3.0-r1-20261123/dsh-go-1.3.0-localfix.1-arm64-verified.zip) |
 | 1.2.0-localfix.1（旧版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.2.0-r1-20261119/dsh-go-1.2.0-localfix.1-arm64.apk) |
 | 1.1.0-localfix.2（旧版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.1.0-r2-20261119/dsh-go-1.1.0-localfix.2-arm64.apk) |
 | 1.1.0-localfix.1（旧版） | Android arm64，约 232 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.1.0-r1-20261117/dsh-go-1.1.0-localfix.1-arm64.apk) |
@@ -20,6 +21,8 @@
 | 1.0.9-localfix.3（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-r3-20261104/dsh-go-1.0.9-localfix.3-arm64.apk) |
 | 1.0.9-localfix.2（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-r2-20261104/dsh-go-1.0.9-localfix.2-arm64.apk) |
 | 1.0.9-localfix.1（旧版） | Android arm64，约 193 MB | [下载 APK](https://github.com/kazewwk/server/releases/download/dsh-go-localfix-v1.0.9-20261103/dsh-go-1.0.9-localfix.1-arm64.apk) |
+
+**1.4.0-localfix.1** 合入官方 1.4.0 的长对话流畅度改进和部分断线恢复修复。保留 SSH 同步改进、120 Hz 上限及 Shizuku／自连 ADB 的常用 Shell 命令开关。桌面显示「LocalFix」，可覆盖旧版 LocalFix。备用 ZIP 解压后可安装其中的 APK。[发布页与源码](https://github.com/kazewwk/server/releases/tag/dsh-go-localfix-v1.4.0-r1-20261127)
 
 **1.3.0-localfix.1** 合入官方 1.3.0 的刷新率修复与远程会话备份。保留 SSH 后台加解密、同步改进、120 Hz 上限及 Shizuku／自连 ADB 的常用 Shell 命令开关。备用 ZIP 内附同一 APK 和 SHA-256 校验文件。[发布页与源码](https://github.com/kazewwk/server/releases/tag/dsh-go-localfix-v1.3.0-r1-20261123)
 
